@@ -154,14 +154,19 @@ public class MilkAdmin extends JavaPlugin implements RTKListener{
 	}
 	
 	public void enablePermissions() {
-		RegisteredServiceProvider<Permission> permissionProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class);
-        if (permissionProvider != null) {
-            Permissions = permissionProvider.getProvider();
-            permissionsEnabled = true;
-            MilkAdminLog.info("Permission support enabled!");
-        } else
-        	MilkAdminLog.warning("Permission system not found!");
-    }
+		try {
+			RegisteredServiceProvider<Permission> permissionProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class);
+
+			if (permissionProvider != null) {
+				Permissions = permissionProvider.getProvider();
+				permissionsEnabled = true;
+				MilkAdminLog.info("Permission support enabled!");
+			} else
+				MilkAdminLog.warning("Permission system not found!");
+		}catch(NoClassDefFoundError error){
+			error.printStackTrace();
+		}
+	}
 
 	public void onRTKStringReceived(String s){
 		if(s.equals("RTK_TIMEOUT")){
