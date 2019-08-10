@@ -20,4 +20,4 @@ This work is licensed under the Creative Commons Attribution-NonCommercial-Share
 To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/
 or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
 
-All the credit goes to the original creator of the plugin, sharkiller: https://github.com/sharkiller
+All the credit goes to the original creator of the plugin, sharkiller: https://github.com/sharkiller. Thank you for creating this plugin, and giving me some nostalgy that drives me to create this fork and maintain it.
