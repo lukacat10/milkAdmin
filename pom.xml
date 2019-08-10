@@ -103,7 +103,7 @@
 					<relocations>
 						<relocation>
 							<pattern>org.bstats</pattern>
-							<shadedPattern>com.garbagemule.MobArena.metrics</shadedPattern>
+							<shadedPattern>com.sectorgamer.sharkiller.milkAdmin.metrics</shadedPattern>
 						</relocation>
 					</relocations>
 				</configuration>
@@ -119,9 +119,9 @@
 		</plugins>
 	</build>
 	<scm>
-		<url>https://github.com/sharkiller/milkAdmin</url>
-		<developerConnection>scm:git:git@github.com:sharkiller/milkAdmin.git</developerConnection>
-		<connection>scm:git:git://github.com/sharkiller/milkAdmin.git</connection>
+		<url>https://github.com/lukacat10/milkAdmin</url>
+		<developerConnection>scm:git:git@github.com:lukacat10/milkAdmin.git</developerConnection>
+		<connection>scm:git:git://github.com/lukacat10/milkAdmin.git</connection>
 	</scm>
 	<ciManagement>
 		<system>jenkins</system>
