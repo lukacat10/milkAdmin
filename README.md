@@ -4,7 +4,7 @@ Currently, most versions seem to work, because the plugin was built around basic
 That doesn't mean that things won't break. 
 ### This thing is so old
 This thing is so old, that it used to require jdk 1.5.
-This thing is so old, that my entire intllij scrollbar was COMPLETELY yellow.
+This thing is so old, that my entire intelliJ scrollbar was COMPLETELY yellow.
 This thing is so old, that it still treated item id's as integers.
 
 More fixes are on the way. Help would be appreciated.
