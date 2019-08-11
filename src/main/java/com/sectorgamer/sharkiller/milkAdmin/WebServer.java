@@ -182,7 +182,15 @@ public class WebServer extends Thread implements RTKListener {
     }
 
     private void consoleCommand(final String cmd) {
-        milkAdminInstance.getServer().dispatchCommand(Bukkit.getConsoleSender(), cmd);
+        if(!Thread.currentThread().getName().equals("Server thread") || !Bukkit.getServer().isPrimaryThread()){
+            Bukkit.getServer().getScheduler().runTask(this.milkAdminInstance, new Runnable() {
+                @Override
+                public void run() {
+                    milkAdminInstance.getServer().dispatchCommand(Bukkit.getConsoleSender(), cmd);
+                }
+            });
+        }else
+            milkAdminInstance.getServer().dispatchCommand(Bukkit.getConsoleSender(), cmd);
     }
 
     private String readConsole() {
