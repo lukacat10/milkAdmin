@@ -4,15 +4,12 @@ author: Sharkiller
 version: 2.0-dev
 website: http://www.sectorgamer.com/comunidad/
 description: WebAdministrator of Minecraft Servers for Bukkit.
-
 softdepend: [Vault]
-
 commands:
   milkadmin:
     description: milkAdmin commands.
     usage: /<command> help
     aliases: [ma]
-    
 permissions:
   milkadmin.whitelist:
     description: Manage whitelist commands

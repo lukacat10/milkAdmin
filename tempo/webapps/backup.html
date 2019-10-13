@@ -1,0 +1,87 @@
+<!--
+	milkAdmin - WebAdministrarion of Minecraft Server for Bukkit
+    Copyright (C) 2010-2011  Alejandro Barreiro (Sharkiller)
+	
+    This file is part of milkAdmin.
+
+    This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+	To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to
+	Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>milkAdmin</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="/css/jquery.jnotify.min.css" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.jnotify.min.js"></script>
+	<script type="text/javascript" src="/js/lang/default.js"></script>
+	<script language="JavaScript">
+		$.ajaxSetup({
+			timeout: 2000
+		});
+		
+		function checkBackupStatus(){
+			$.ajax({
+				url: 'backup_info.json',
+				dataType: "json",
+				success: function(data) {
+					if(data.isBackup == "on"){
+						$.jnotify(langBackup["langStatus"], 2000);
+					}else if(data.isBackup == "off"){
+						$.jnotify(jsBackup["Complete"], 2000);
+						location.href = "/actions.html";
+						return;
+					}else{
+						$.jnotify(jsBackup["UnknownError"], "error", 2000);
+					}
+				},
+				error: function(error){
+					$.jnotify(jsBackup["NotResponse"], "error", 2000);
+				}
+			});
+			setTimeout('checkBackupStatus()', 5000);
+		}
+		
+		function replaceText() {
+			for(var prop in langBackup){
+				var patt=new RegExp(prop, "g");
+				$('body').html($('body').html().replace(patt, langBackup[prop])); 
+			}
+		}
+		
+		$(document).ready(function() {
+			replaceText();
+			setTimeout('checkBackupStatus()', 5000);
+		});
+	</script>
+</head>
+<body>
+	<div id="header" class="fluid"> 
+		<div class="container"> 
+			<div style="position: relative; float:left; width: 450px; height: 80px;">
+				<img width="450" height="80" src="/images/logo-header.png" alt="milkAdmin" style="position: absolute;" />
+			</div>
+		</div>
+	</div> 
+	<div id="features" class="fluid" style="border-bottom:outset 1px #ffffff;"> 
+		<div class="container">
+			<div class="subtitle">Minecraft Administration Tool</div>
+		</div>
+	</div>
+
+	<div id="box" style="min-height:350px">
+		<div id="start" align="center" style="font-size: 50px; margin-top: 30px;">
+			langStatus
+			<br /><br />
+			<img align="center" src="http://www.sharkale.com.ar/milkAdmin/images/loader.gif" />
+		</div>
+	</div>
+	<div id="darkLayer" class="darkClass"></div>
+
+</body>
+</html>

@@ -1,0 +1,563 @@
+<!--
+	milkAdmin - WebAdministrator of Minecraft Server for Bukkit
+    Copyright (C) 2010-2011  Alejandro Barreiro (Sharkiller)
+	
+    This file is part of milkAdmin.
+
+    This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+	To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to
+	Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>milkAdmin</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="/css/jquery-ui.css" />
+	<link rel="stylesheet" type="text/css" href="/css/dd.css" />
+	<link rel="stylesheet" type="text/css" href="/css/dataTable_page.css" />
+	<link rel="stylesheet" type="text/css" href="/css/dataTable_table_jui.css" />
+	<link rel="stylesheet" type="text/css" href="/css/jquery.jnotify.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/jquery.tooltip.css" />
+	<script type="text/javascript" src="/js/lang/default.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.dd.js"></script>
+	<script type="text/javascript" src="/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.jnotify.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.tooltip.min.js"></script>
+	<script type="text/javascript" src="/js/index.js"></script>
+	<script type="text/javascript">currentversion = 1.9;</script>
+</head>
+<body>
+	<div id="header" class="fluid">
+		<div class="container" style="position: relative;height:80px"> 
+			<div style="position: relative; float:left; width: 410px; height: 80px;">
+				<img width="450" height="80" src="/images/logo-header.png" alt="milkAdmin" style="position: absolute;" />
+			</div>
+			<div id="menu" style="position: relative; padding-top: 25px; float:right; height: 50px;">
+				<select class="mydds" name="ajaxdd" id="ajaxdd" onchange="loadLanguage(this.value)">
+					<option value="0" title="/images/icons/lang.png" selected="selected">langChooseLanguage</option>
+					<option value="ar" title="/images/icons/sa.png">Arabic</option>
+					<option value="bg-BG" title="/images/icons/bg.png">Bulgarian (Bulgaria)</option>
+					<option value="zh-CN" title="/images/icons/cn.png">Chinese (China)</option>
+					<option value="zh-HK" title="/images/icons/hk.png">Chinese (Hong Kong)</option>
+					<option value="zh-TW" title="/images/icons/tw.png">Chinese (Taiwan)</option>
+					<option value="cs-CZ" title="/images/icons/cz.png">Czech (Czech Republic)</option>
+					<option value="da" title="/images/icons/dk.png">Danish</option>
+					<option value="nl" title="/images/icons/nl.png">Dutch</option>
+					<option value="nl-BE" title="/images/icons/be.png">Dutch (Belgium)</option>
+					<option value="en" title="/images/icons/gb.png">English</option>
+					<option value="et-EE" title="/images/icons/ee.png">Estonian (Estonia)</option>
+					<option value="fi" title="/images/icons/fi.png">Finnish</option>
+					<option value="fr" title="/images/icons/fr.png">French</option>
+					<option value="de" title="/images/icons/de.png">German</option>
+					<option value="grk" title="/images/icons/gr.png">Greek</option>
+					<option value="he" title="/images/icons/il.png">Hebrew</option>
+					<option value="hu-HU" title="/images/icons/hu.png">Hungarian (Hungary)</option>
+					<option value="is-IS" title="/images/icons/is.png">Icelandic (Iceland)</option>
+					<option value="it" title="/images/icons/it.png">Italian</option>
+					<option value="ja-JP" title="/images/icons/jp.png">Japanese (Japan)</option>
+					<option value="ko" title="/images/icons/kr.png">Korean</option>
+					<option value="la" title="/images/icons/va.png">Latin</option>
+					<option value="lv" title="/images/icons/lv.png">Latvian</option>
+					<option value="lt" title="/images/icons/lt.png">Lithuanian</option>
+					<option value="no" title="/images/icons/no.png">Norwegian</option>
+					<option value="pl-PL" title="/images/icons/pl.png">Polish (Poland)</option>
+					<option value="pt-BR" title="/images/icons/br.png">Portuguese (Brazil)</option>
+					<option value="pt-PT" title="/images/icons/pt.png">Portuguese (Portugal)</option>
+					<option value="ro" title="/images/icons/ro.png">Romanian</option>
+					<option value="ru" title="/images/icons/ru.png">Russian</option>
+					<option value="sk-SK" title="/images/icons/sk.png">Slovak (Slovakia)</option>
+					<option value="es" title="/images/icons/es.png">Spanish</option>
+					<option value="es-AR" title="/images/icons/ar.png">Spanish (Argentina)</option>
+					<option value="sv" title="/images/icons/se.png">Swedish</option>
+					<option value="tl" title="/images/icons/ph.png">Tagalog</option>
+					<option value="th-TH" title="/images/icons/th.png">Thai (Thailand)</option>
+					<option value="tr-TR" title="/images/icons/tr.png">Turkish (Turkey)</option>
+					<option value="uk" title="/images/icons/ua.png">Ukrainian</option>
+					<option value="cy" title="/images/icons/wales.png">Welsh</option>
+				</select>
+				<a href="http://www.getlocalization.com/milkAdmin/" target="_blank" style="text-decoration: none;display:inline;">
+					<img width="32" height="32" src="/images/gl.png" alt="" title="langTranslate" style="position:relative; top: -3px; float:left;margin-right:10px; box-shadow: 2px 4px 15px black;"/>
+				</a>
+				<a href="https://www.paypal.com/cgi-bin/webscr?item_name=milkAdmin&business=sharkale3101%40hotmail.com&cmd=_donations&rm=1&no_shipping=1&currency_code=USD" target="_blank" style="text-decoration: none;display:inline;">
+					<img width="81" height="32" src="/images/paypal.png" alt="" title="Please Donate" style="position:relative; top: -3px; float:left;margin-right:10px; box-shadow: 2px 4px 15px black;"/>
+				</a>
+				<a id="about" href="" style="text-decoration: none;display:inline;">
+					<div class="btn blue">langAbout</div>
+				</a>
+				<a href="/server/logout" style="text-decoration: none;display:inline;" onclick="return logout(this)">
+					<div class="btn red">langLogout</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div id="features" class="fluid" style="border-bottom:outset 1px #ffffff;"> 
+		<div class="container">
+			<div class="subtitle">Minecraft Administration Tool</div>
+			<div class="buttons"> 
+				<div id="restart" style="display: inline">
+					<a href="/restart_server" style="text-decoration: none;">
+						<div class="btn"><div>langRestartServer</div></div>
+					</a>
+				</div>
+				<div id="reload" style="display: inline">
+					<a href="/reload_server" style="text-decoration: none;">
+						<div class="btn"><div>langReloadServer</div></div>
+					</a>
+				</div>
+				<div id="backupbut" style="display: inline">
+					<a href="/backup" style="text-decoration: none;">
+						<div class="btn"><div>langBackupStart</div></div>
+					</a>
+				</div>
+				<div id="save-all" style="display: inline">
+					<a href="/save" target="i" style="text-decoration: none;">
+						<div class="btn"><div>langSaveMap</div></div>
+					</a>
+				</div>
+				<div id="stop" style="display: inline">
+					<a href="/stop" style="text-decoration: none;">
+						<div class="btn"><div>langStopServer</div></div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<iframe id="i" name="i" style="display:none"></iframe>
+	
+	<div id="loading" style="display: none;">
+		<div class="ui-overlay" style="z-index:2147483645"><div class="ui-widget-overlay" style="z-index:2147483646"></div><div style="width: 122px; height: 122px; position: absolute; left: 500px; top: 100px;z-index:2147483646" class="ui-widget-shadow ui-corner-all"></div></div>
+		<div style="position: absolute; width: 100px; height: 100px;left: 500px; top: 100px; padding: 10px;background:#FFF;z-index:2147483647" class="ui-widget ui-widget-content ui-corner-all">
+			<img src="/images/loader.gif"/>
+		</div>
+	</div>
+	
+	<div id="dialog-newversion" title="langNewVersionAvailable">
+		<h1 id="latestversion" style="color:orange">langVersionAvailable</h1>
+		<p>
+			<h2 style="margin: 5px;">langUpdateNow</h2>
+		</p>
+	</div>
+	
+	<div id="dialog-about" title="langmilkAdmin">
+		<h1 style="color:orange">milkAdmin</h1>
+		<h2 style="margin: 5px;">langDesign</h2>
+		Sharkiller > v1.0<br/>
+		David Diaz < v0.0.55
+		<h2 style="margin: 5px;">langThanks</h2>
+		drdanick (Minecraft Remote Toolkit)<br/><br/>
+		
+		<h2 style="margin: 5px;font-size: 18px;">Copyright License:</h2>
+		<span style="font-size: 12px;">
+			<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+				<img alt="Licencia de Creative Commons" align="left" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" />
+			</a>
+			<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">milkAdmin</span>
+			by <a tabindex="-1" xmlns:cc="http://creativecommons.org/ns#" href="http://www.sectorgamer.com/comunidad/threads/minecraft-sg-server.2152/" property="cc:attributionName" rel="cc:attributionURL">Sharkiller</a>
+			is licensed under a <a tabindex="-1" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
+			Based on a work at <a tabindex="-1" xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/Sharkiller/milkAdmin" rel="dct:source">github.com</a>.
+		</span>
+	</div>
+	
+	<div id="dialog-ban" title="langBanOptions" style="background:url('/images/ui-bg_diagonals-thick_18_b81900_40x40.png') repeat scroll 50% 50% #B81900">
+		<div id="accordion-ban">
+			<h3><a href="#">langKickPlayer</a></h3>
+			<div>
+				<form name="banname" action="player/kick" method="get" onsubmit="return adminUser(this)">
+					<div>
+						<span style="display: inline-block;width:150px;">Player: </span>
+						<input style="width:300px;" type="text" name="user" value="">
+					</div>
+					<br>
+					<div>
+						<span style="display: inline-block;width:150px;">langCause: </span>
+						<input style="width:300px;" type="text" name="cause" value="">
+					</div>
+					<br>
+					<input type="submit" value="langKickPlayer">
+				</form>
+			</div>
+			<h3><a href="#">langBanPlayerName</a></h3>
+			<div>
+				<form name="banname" action="player/ban_player" method="get" onsubmit="return adminUser(this)">
+					<div>
+						<span style="display: inline-block;width:150px;">Player: </span>
+						<input style="width:300px;" type="text" name="user" value="">
+					</div>
+					<br>
+					<div>
+						<span style="display: inline-block;width:150px;">langCause: </span>
+						<input style="width:300px;" type="text" name="cause" value="">
+					</div>
+					<br>
+					<input type="submit" value="langBanPlayerName">
+				</form>
+			</div>
+			<h3><a href="#">langBanIPAddress</a></h3>
+			<div>
+				<form name="banip" action="player/ban_ip" method="get" onsubmit="return adminUser(this)">
+					<div>
+						<span style="display: inline-block;width:150px;">IP-Address: </span>
+						<input style="width:300px;" type="text" name="ip" value="" onpaste="pasteIP(this)">
+					</div>
+					<br>
+					<div>
+						<span style="display: inline-block;width:150px;">langCause: </span>
+						<input style="width:300px;" type="text" name="cause" value="">
+					</div>
+					<br>
+					<input type="submit" value="langBanIPAddress">
+				</form>
+			</div>
+		</div>
+		<script>
+			$(function() {
+				$("#accordion-ban").accordion({autoHeight:false});
+			});
+		</script>
+	</div>
+	
+	<div id="content" class="fluid"> 
+		<div class="container"> 
+			<div id="tabs">
+				<ul>
+					<li><a href="#serverdiv">langServerSM</a></li>
+					<li><a href="#plugindiv">langPluginsSM</a></li>
+					<li><a href="#backupdiv">langBackupsSM</a></li>
+					<li><a href="#milkdiv">milkAdmin</a></li>
+				</ul>
+				<!-- Start Server Div -->
+				<div id="serverdiv" class="tab" style="padding:5px;">
+					<!-- Start Server Tab -->
+					<div id="servertabs">
+						<ul>
+							<li><a href="#serverinfodiv">langServerInfoSM</a></li>
+							<li><a href="#consolediv">langConsoleSM</a></li>
+							<li><a href="#playerdiv">langPlayersSM</a></li>
+							<li><a href="#banlistdiv">langBanListSM</a></li>
+							<li><a href="#whitelistdiv">langWhitelistSM</a></li>
+						</ul>
+						
+						<!-- Start Server Info Div -->
+						<div id="serverinfodiv" class="tab">
+							<span>langLastRestart:</span> <div class="lastrestart serverdata"><img src="/images/load.gif" alt="..." align="absmiddle"/></div>
+							<span>langAmountPlayersOnline:</span> <div class="amountusers serverdata"><img src="/images/load.gif" alt="..." align="absmiddle"/></div><br />
+							<span class="ui-icon ui-icon-info info-icons tt" title="langTitleMemory"></span>
+							<span>langFreeMemory:</span> <div class="freememory serverdata"><img src="/images/load.gif" alt="..." align="absmiddle"/></div>
+							<span>langUsedMemory:</span> <div class="usedmemory serverdata"><img src="/images/load.gif" alt="..." align="absmiddle"/></div>
+							<span>langTotalMemory:</span> <div class="totalmemory serverdata"><img src="/images/load.gif" alt="..." align="absmiddle"/></div>
+							<span>langMaxMemory:</span> <div class="maxmemory serverdata"><img src="/images/load.gif" alt="..." align="absmiddle"/></div>
+							<div id="memoria" style="margin-bottom:5px;"></div>
+							<span class="ui-icon ui-icon-info info-icons tt" title="langTitleSpace"></span>
+							<span>langFreeSpace:</span> <div class="freespace serverdata"><img src="/images/load.gif" alt="..." align="absmiddle"/></div>
+							<span>langUsedSpace:</span> <div class="usedspace serverdata"><img src="/images/load.gif" alt="..." align="absmiddle"/></div>
+							<span>langTotalSpace:</span> <div class="totalspace serverdata"><img src="/images/load.gif" alt="..." align="absmiddle"/></div>
+							<div id="espacio" style="margin-bottom:5px;"></div>
+							<span>langServerVersion:</span> <div class="serverversion serverdata"><img src="/images/load.gif" alt="..." align="absmiddle"/></div>
+							<span>langCraftbukkitBuild:</span> <div class="serverbuild serverdata"><img src="/images/load.gif" alt="..." align="absmiddle"/></div>
+							<hr>
+							<form name="input" id="broadcast" action="/server/broadcast_message" method="get" onsubmit="return adminUser(this)">
+								<span class="ui-icon ui-icon-info info-icons tt" title="langTitleBroadcastMessage"></span>
+								<div style="width:300px;display:inline-block">langBroadcastMessage: </div>
+								<div style="display:inline"><input type="text" id="broadcastm" name="message" size="50"> <input type="submit" value="lang1Send"></div>
+							</form>
+
+							<hr>
+							<form name="input" id="level-name" action="/server/properties_edit?property=level-name" method="get" onsubmit="return adminUser(this)">
+								<span class="ui-icon ui-icon-info info-icons tt" title="level-name - langTitleLevelName"></span>
+								<div style="margin-top:10px;width:300px;display:inline-block">langLevelName:</div>
+								<div style="display:inline"><input type="text" name="value" size="20"> <input type="submit" value="lang1Change"></div>
+							</form>
+
+							<form name="input" id="server-ip" action="/server/properties_edit?property=server-ip" method="get" onsubmit="return adminUser(this)" style="display:inline">
+								<span class="ui-icon ui-icon-info info-icons tt" title="server-ip/server-port - langTitleMCIPPORT"></span>
+								<div style="margin-top:10px;width:300px;display:inline-block">langMCIPPORT:</div>
+								<div style="display:inline"><input type="text" name="value" size="20"> <input type="submit" value="lang1Change"></div>
+							</form>
+							
+							<form name="input" id="server-port" action="/server/properties_edit?property=server-port" method="get" onsubmit="return adminUser(this)" style="display:inline">
+								<div style="display:inline"><input type="text" name="value" size="5" onkeypress="return onlyNumbers(event);" style="text-align:center"> <input type="submit" value="lang1Change"></div>
+							</form>
+							
+							<form name="input" id="max-players" action="/server/properties_edit?property=max-players" method="get" onsubmit="return adminUser(this)">
+								<span class="ui-icon ui-icon-info info-icons tt" title="max-players - langTitleMaxPlayers"></span>
+								<div style="margin-top:10px;width:300px;display:inline-block">langMaxPlayers: <span id="maxplayers">100</span></div>
+								<div style="display:inline">
+									<div id="slider-max-players" style="display: inline-block;width:406px"></div>
+									 &nbsp; &nbsp;<input type="hidden" name="value" value="100"><input type="submit" value="lang1Change"></div>
+							</form>
+							
+							<form name="input" id="view-distance" action="/server/properties_edit?property=view-distance" method="get" onsubmit="return adminUser(this)">
+								<span class="ui-icon ui-icon-info info-icons tt" title="view-distance - langTitleViewDistance"></span>
+								<div style="margin-top:10px;width:300px;display:inline-block">langViewDistance: <span id="viewdistance">10</span> Chunks</div>
+								<div style="display:inline">
+									<div id="slider-view-distance" style="display: inline-block;width:406px"></div>
+									 &nbsp; &nbsp;<input type="hidden" name="value" value="10"><input type="submit" value="lang1Change">
+								</div>
+							</form>
+							
+							<form name="input" id="hold-message" action="/server/properties_edit?property=hold-message" method="get" onsubmit="return adminUser(this)">
+								<span class="ui-icon ui-icon-info info-icons tt" title="MCSignOnDoorRTK - langTitleHoldMessage"></span>
+								<div style="margin-top:10px;width:300px;display:inline-block">langHoldMessage (MCSODRTK):</div>
+								<div style="display:inline"><input type="text" name="value" size="50"> <input type="submit" value="lang1Change"></div>
+							</form>
+	
+							<form name="input-radio" id="allow-nether" action="/server/properties_edit?property=allow-nether" method="get" onsubmit="return adminUser(this)">
+								<span class="ui-icon ui-icon-info info-icons tt" title="allow-nether - langTitleAllowNether"></span>
+								<div style="margin-top:10px;width:300px;display:inline-block">langAllowNether:</div>
+								<div class="choice" style="display:inline">
+									<label><input type="radio" name="value" value="true"> lang1On</label>
+									<label><input type="radio" name="value" value="false"> lang1Off</label> &nbsp; &nbsp;<input type="submit" value="lang1Change">
+								</div>
+							</form>
+
+							<form name="input-radio" id="spawn-monsters" action="/server/properties_edit?property=spawn-monsters" method="get" onsubmit="return adminUser(this)">
+								<span class="ui-icon ui-icon-info info-icons tt" title="spawn-monsters - langTitleSpawnMonsters"></span>
+								<div style="margin-top:10px;width:300px;display:inline-block">langSpawnMonsters:</div>
+								<div class="choice" style="display:inline">
+									<label><input type="radio" name="value" value="true"> lang1On</label>
+									<label><input type="radio" name="value" value="false"> lang1Off</label> &nbsp; &nbsp;<input type="submit" value="lang1Change">
+								</div>
+							</form>
+
+							<form name="input-radio" id="spawn-animals" action="/server/properties_edit?property=spawn-animals" method="get" onsubmit="return adminUser(this)">
+								<span class="ui-icon ui-icon-info info-icons tt" title="spawn-animals - langTitleSpawnAnimals"></span>
+								<div style="margin-top:10px;width:300px;display:inline-block">langSpawnAnimals:</div>
+								<div class="choice" style="display:inline">
+									<label><input type="radio" name="value" value="true"> lang1On</label>
+									<label><input type="radio" name="value" value="false"> lang1Off</label> &nbsp; &nbsp;<input type="submit" value="lang1Change">
+								</div>
+							</form>
+
+							<form name="input-radio" id="online-mode" action="/server/properties_edit?property=online-mode" method="get" onsubmit="return adminUser(this)">
+								<span class="ui-icon ui-icon-info info-icons tt" title="online-mode - langTitleOnlineMode"></span>
+								<div style="margin-top:10px;width:300px;display:inline-block">langOnlineMode:</div>
+								<div class="choice" style="display:inline">
+									<label><input type="radio" name="value" value="true"> lang1On</label>
+									<label><input type="radio" name="value" value="false"> lang1Off</label> &nbsp; &nbsp;<input type="submit" value="lang1Change">
+								</div>
+							</form>
+
+							<form name="input-radio" id="pvp" action="/server/properties_edit?property=pvp" method="get" onsubmit="return adminUser(this)">
+								<span class="ui-icon ui-icon-info info-icons tt" title="pvp - langTitlePVP"></span>
+								<div style="margin-top:10px;width:300px;display:inline-block">langPVP:</div>
+								<div class="choice" style="display:inline">
+									<label><input type="radio" name="value" value="true"> lang1On</label>
+									<label><input type="radio" name="value" value="false"> lang1Off</label> &nbsp; &nbsp;<input type="submit" value="lang1Change">
+								</div>
+							</form>
+							
+							<form name="input-radio" id="flight" action="/server/properties_edit?property=allow-flight" method="get" onsubmit="return adminUser(this)">
+								<span class="ui-icon ui-icon-info info-icons tt" title="allow-flight - langTitleAllowFlight"></span>
+								<div style="margin-top:10px;width:300px;display:inline-block">langAllowFlight:</div>
+								<div class="choice" style="display:inline">
+									<label><input type="radio" name="value" value="true"> lang1On</label>
+									<label><input type="radio" name="value" value="false"> lang1Off</label> &nbsp; &nbsp;<input type="submit" value="lang1Change">
+								</div>
+							</form>
+							
+							<form name="input-radio" id="whitelist" action="/server/properties_edit?property=white-list" method="get" onsubmit="return adminUser(this)">
+								<span class="ui-icon ui-icon-info info-icons tt" title="white-list - langTitleWhitelist"></span>
+								<div style="margin-top:10px;width:300px;display:inline-block">langWhitelist:</div>
+								<div class="choice" style="display:inline">
+									<label><input type="radio" name="value" value="true"> lang1On</label>
+									<label><input type="radio" name="value" value="false"> lang1Off</label> &nbsp; &nbsp;<input type="submit" value="lang1Change">
+								</div>
+							</form>
+						</div>
+						<!-- Finish Server Info Div -->
+						
+						<!-- Start Console Div -->
+						<div id="consolediv" class="tab">
+							<textarea name="comments" style="width: 99%; height:450px; background-color: black; color: white;" id="console" readonly="true"></textarea>
+							
+							<form name="input" id="consolesubmit" action="/server/say" method="get" onsubmit="return adminUser(this)">
+								<input type="text" id="consolesubmitm" name="message" maxlength="50" style="width:88%">
+								<input type="submit" style="width:10%" value="lang1Send">
+							</form>
+						</div>
+						<!-- Finish Console Div -->
+						
+						<!-- Start Player Div -->
+						<div id="playerdiv" class="tab">
+							<div id="dialog-user" title="langUserManagement">
+								<div>
+									<span>langIP: </span><span class="ip" style="color:green"></span><span> | langPort: </span><span class="port" style="color:green"></span>
+								</div>
+								<hr/>
+								<form name="user" action="/player/set_health" method="get" style="display:inline;" onsubmit="return adminUser(this)">
+									<input type="hidden" name="user" value="">
+									<input type="hidden" name="amount" value="0">
+									<input type="submit" value="langKill">
+								</form>
+								<form name="user" action="/player/kick_user" method="get" style="display:inline;" onsubmit="return ban(this,'kick')">
+									<input type="hidden" name="user" value="">
+									<input type="submit" value="langKick">
+								</form>
+								<form name="user" action="/player/ban_player" method="get" style="display:inline;" onsubmit="return ban(this,'name')">
+									<input type="hidden" name="user" value="">
+									<input type="submit" value="langBanName">
+								</form>
+								<form name="user" action="/player/ban_ip" method="get" style="display:inline;" onsubmit="return ban(this,'ip')">
+									<input type="hidden" name="ip" value="">
+									<input type="submit" value="langBanIP">
+								</form>
+								<hr/>
+								<span>langAmount: <input type="text" value="1" size="3" maxlength="3" onkeyup="$('form[name=\'shoot\'] input[name=\'amount\']').val(this.value)" onkeypress="return onlyNumbers(event);"></span>
+								<form name="shoot" action="/player/shoot_arrow" method="get" style="display:inline;" onsubmit="return adminUser(this)">
+									<input type="hidden" name="user" value="">
+									<input type="hidden" name="amount" value="1">
+									<input type="submit" value="langShootArrow">
+								</form>
+								<form name="shoot" action="/player/shoot_fireball" method="get" style="display:inline;" onsubmit="return adminUser(this)">
+									<input type="hidden" name="user" value="">
+									<input type="hidden" name="amount" value="1">
+									<input type="submit" value="langShootFireball">
+								</form>
+								<br/><br/>
+								<form name="shoot" action="/player/throw_egg" method="get" style="display:inline;" onsubmit="return adminUser(this)">
+									<input type="hidden" name="user" value="">
+									<input type="hidden" name="amount" value="1">
+									<input type="submit" value="langThrowEgg">
+								</form>
+								<form name="shoot" action="/player/throw_snowball" method="get" style="display:inline;" onsubmit="return adminUser(this)">
+									<input type="hidden" name="user" value="">
+									<input type="hidden" name="amount" value="1">
+									<input type="submit" value="langThrowSnowball">
+								</form>
+								<hr/>
+								<form name="user" action="/player/teleport_to_player" method="get" onsubmit="return adminUser(this)">
+									<input type="hidden" name="user" value="">
+									<input type="submit" value="langTeleportToPlayer">
+									<select id="usersoption" name="to_user" style="width:280px"></select>
+								</form>
+								<br>
+								<form name="user" action="/player/teleport_to_location" method="get" onsubmit="return adminUser(this)">
+									<input type="hidden" name="user" value="">
+									<input type="submit" value="langTeleportToCoord">
+									X: <input type="text" name="x" value="" size="4" maxlength="5"> Y: <input type="text" name="y" value="" size="4" maxlength="5"> Z: <input type="text" name="z" value="" size="4" maxlength="5">
+								</form>
+								<hr/>
+								<form name="user" action="/player/change_display_name" method="get" onsubmit="return adminUser(this)">
+									<input type="hidden" name="user" value="">
+									<input type="submit" value="langChangeName">
+									<input type="text" name="name" value="" size="43" maxlength="25">
+								</form>
+							</div>
+							<div class="usersonline">
+							</div>
+						</div>
+						<!-- Finish Player Div -->
+						
+						<!-- Start Banlist Div -->
+						<div id="banlistdiv" class="tab">
+							<div style="display:inline-block;padding-right:20px"><input type="button" name="banlistreload" onclick="reloadBanlist()" value="lang1ReloadList"></div>
+							<div style="display:inline-block;padding-right:20px"><input type="text" id="banlistfilter" size="20" maxlength="50" onkeyup="banlistfilter(this.value)"> <input type="button" onclick="$('#banlistfilter').val('');banlistfilter('')" value="langClearFilter"></div>
+							<input id="banlistadd" type="button" value="langCreateBan">
+							<br><br>
+							<div class="header"><span class="banlistuser">lang1Player</span><span class="banlistcause">langCause</span><span class="banlistbuttons">lang1Action</span></div>
+							<div id="banlistsectionname" style="margin-bottom:10px">
+								lang1ReloadList.
+							</div>
+							<div class="header"><span class="banlistuser">lang1IPAddress</span><span class="banlistcause">langCause</span><span class="banlistbuttons">lang1Action</span></div>
+							<div id="banlistsectionip">
+								lang1ReloadList.
+							</div>
+						</div>
+						<!-- Finish Banlist Div -->
+						
+						<!-- Start Whitelist Div -->
+						<div id="whitelistdiv" class="tab">
+							<div style="margin-bottom:10px;display:inline-block;padding-right:10px"><input type="button" onclick="reloadWhiteList()" value="lang1ReloadList"></div>
+							<div style="margin-top:10px;width:150px;display:inline-block;text-align:right;">langWLAddPlayer:</div>
+							<div style="display:inline-block"><input type="text" id="WLAddPlayer" size="15" maxlength="50" class="actions" disabled="disabled" /> <input type="submit" value="lang1Add" onclick="addToWhiteList()" class="actions" disabled="disabled" /></div>
+							<div style="margin-bottom:10px;display:inline-block;padding-right:20px"><input type="button" onclick="deleteWhiteList()" value="langWLDeleteSelected" class="actions" disabled="disabled" /></div>
+							<div style="margin-bottom:10px;display:inline-block;"><input type="button" id="wlsave" onclick="saveWhiteList()" value="langWLSaveChanges" disabled="disabled" /></div>
+							<select size="20" id="whitelistsel" name="users" multiple="multiple" style="width: 100%">
+								<option value="">lang1ReloadList</option>
+							</select>
+						</div>
+						<!-- Finish Whitelist Div -->
+					</div>
+					<!-- Finish Server Tab -->
+				</div>
+				<!-- Finish Server Div -->
+				
+				<!-- Start Plugin Div -->
+				<div id="plugindiv" class="tab">
+					<div style="width:200px;display:inline-block"><input type="button" name="pluginreload" onclick="reloadPluginList()" value="lang1ReloadList"></div>
+					<form name="input" id="enableplugin" action="/server/enable_plugin" method="get" target="i" style="display:inline">
+						<div style="margin-top:10px;width:150px;display:inline-block">langEnablePlugin:</div>
+						<div style="display:inline-block"><input type="text" name="plugin" size="15" maxlength="50"> <input type="submit" value="langEnable"></div>
+					</form>
+					<div>
+						<table id="pluginstable" style="width:910px">
+							<thead>
+								<tr>
+									<th class="scolinfo" style="width: 20px;padding: 0 0 0 12px;"><div class="ui-icon ui-icon-power"></div></th>
+									<th class="pluginname">langPluginName</th>
+									<th class="pluginversion">langVersion</th>
+									<th class="pluginbuttons">lang1Action</th>
+								</tr>
+							</thead>
+							<tbody id="pluginscontents">
+								<tr>
+									<td>
+										<span class="pluginstatus off"></span>
+									</td>
+									<td>langReloadTheList</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- Finish Plugin Div -->
+				
+				<!-- Start Backup Div -->
+				<div id="backupdiv" class="tab">
+					<div style="margin-bottom:10px"><input type="button" name="backuplistreload" onclick="reloadBackupList()" value="lang1ReloadList"></div>
+					<span>langChooseYourBackup:</span>
+					<select size="7" id="backups" style="width: 100%"></select>
+					<div id="backupz" style="margin-top: 10px;display:none;">
+						<div id="restore" style="display: none">
+							<a href="/restore=" style="text-decoration: none;">
+								<div class="btn green">langRestoreBackup</div>
+							</a>
+						</div>
+						<div id="delete" style="display: inline-block">
+							<a href="/delete" target="i" style="text-decoration: none;">
+								<div class="btn red">langDeleteBackup</div>
+							</a>
+						</div>
+						<div>
+							<input type="checkbox" id="backupClear" checked="true"/>
+							langBackupClear
+						</div>
+					</div>
+				</div>
+				<!-- Finish Backup Div -->
+				
+				<!-- Start milkAdmin Div -->
+				<div id="milkdiv" class="tab">
+					<form name="input" id="register" action="/server/account_create" method="get" onsubmit="return adminUser(this)">
+						langRegisterAdmin:<br />
+						<div style="margin-top:10px;width:100px;display:inline-block">lang1User:</div>
+						<div style="display:inline-block"><input type="text" name="username" size="15" maxlength="50"></div><br/>
+						<div style="margin-top:10px;width:100px;display:inline-block">lang1Password:</div>
+						<div style="display:inline-block"><input type="text" name="password" size="15" maxlength="50"></div><br/><br/>
+						<input type="submit" value="langCreateAdmin">
+					</form>
+				</div>
+				<!-- Finish milkAdmin Div -->
+			</div>
+		</div>
+	</div>
+</body>
+</html>

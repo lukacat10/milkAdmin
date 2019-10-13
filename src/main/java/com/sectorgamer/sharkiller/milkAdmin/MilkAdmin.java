@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import com.sectorgamer.sharkiller.milkAdmin.webserver.TomcatServer;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.command.Command;
@@ -40,7 +41,7 @@ public class MilkAdmin extends JavaPlugin implements RTKListener{
 	/* PluginUpdates variables */
 	public PluginUpdates PU;
 	/* RTK variables */
-	boolean UsingRTK;
+	public boolean UsingRTK;
 	RTKInterface RTKapi = null;
 	String userRTK, passRTK;
 	int portRTK;
@@ -187,6 +188,7 @@ public class MilkAdmin extends JavaPlugin implements RTKListener{
 	
 	@Override
 	public void onEnable() {
+		TomcatServer.start(8085, this);
 		Calendar cal = Calendar.getInstance();
 	    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 	    initTime = sdf.format(cal.getTime());

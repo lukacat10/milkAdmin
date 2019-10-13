@@ -1,0 +1,56 @@
+<!--
+	milkAdmin - WebAdministrarion of Minecraft Server for Bukkit
+    Copyright (C) 2010-2011  Alejandro Barreiro (Sharkiller)
+	
+    This file is part of milkAdmin.
+
+    This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+	To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to
+	Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>milkAdmin</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/lang/default.js"></script>
+	<script type="text/javascript">
+		function replaceText() {
+			for(var prop in langStart){
+				var patt=new RegExp(prop, "g");
+				$('body').html($('body').html().replace(patt, langStart[prop])); 
+			}
+		}
+		
+		$(document).ready(function() {
+			replaceText();
+		});
+	</script>
+</head>
+<body>
+	<div id="header" class="fluid"> 
+		<div class="container">
+			<div style="position: relative; float:left; width: 450px; height: 80px;">
+				<img width="450" height="80" src="/images/logo-header.png" alt="milkAdmin" style="position: absolute;" />
+			</div>
+		</div>
+	</div> 
+	<div id="features" class="fluid" style="border-bottom:outset 1px #ffffff;"> 
+		<div class="container">
+			<div class="subtitle">Minecraft Administration Tool</div>
+		</div>
+	</div>
+	<div id="darkLayer" class="darkClass"></div>
+	<div id="box" style="min-height:250px">
+		<div id="start" align="center">
+			<a href="/start" style="text-decoration: none;">
+				<div class="btn-1-start" style="display: block;margin-top:60px!important">langStartServer</div>
+			</a>
+		</div>
+	</div>
+</body>
+</html>

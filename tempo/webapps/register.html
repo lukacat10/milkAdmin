@@ -1,0 +1,98 @@
+<!--
+	milkAdmin - WebAdministrator of Minecraft Server for Bukkit
+    Copyright (C) 2010-2011  Alejandro Barreiro (Sharkiller)
+	
+    This file is part of milkAdmin.
+
+    This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+	To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to
+	Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>milkAdmin</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="/css/jquery.jnotify.min.css" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.jnotify.min.js"></script>
+	<script type="text/javascript" src="/js/lang/default.js"></script>
+	<script type="text/javascript">
+		$.ajaxSetup({
+			timeout: 5000
+		});
+		
+		function register(form){
+			if($('#username').val() == "admin"){
+				$.jnotify(jsRegister["notadmin"], "error", 2000);
+				return false;
+			}
+			if($('#username').val() === "" || $('#password').val() === ""){
+				$.jnotify(jsRegister["baduser"], "error", 2000);
+				return false;
+			}
+			
+			$.ajax({
+				url: form.action,
+				data: $(form).serialize(),
+				success: function(data) {
+					var resp = data.split(":");
+					if (resp[0] == "ok") {
+						$.jnotify(jsRegister["created"], 5000);
+						window.location.replace("./");;
+					}else if(resp[0] == "error"){
+						$.jnotify(jsRegister["error"], "error", 2000);
+					}else{
+						$.jnotify(jsRegister["UnknownError"], "error", 2000);
+					}
+				},
+				error: function(error){
+					$.jnotify(jsRegister["NotResponse"], "error", 2000);
+				},
+				dataType: "text"
+			});
+			
+			return false;
+		}
+		
+		function replaceText() {
+			for(var prop in langRegister){
+				var patt=new RegExp(prop, "g");
+				$('body').html($('body').html().replace(patt, langRegister[prop])); 
+			}
+		}
+		
+		$(document).ready(function() {
+			replaceText();
+		});
+	</script>
+</head>
+<body>
+	<div id="header" class="fluid"> 
+		<div class="container"> 
+			<div style="position: relative; float:left; width: 450px; height: 80px;">
+				<img width="450" height="80" src="/images/logo-header.png" alt="milkAdmin" style="position: absolute;" />
+			</div>
+		</div>
+	</div>  
+	<div id="features" class="fluid" style="border-bottom:outset 1px #ffffff;"> 
+		<div class="container">
+			<div class="subtitle">Minecraft Administration Tool</div>
+		</div>
+	</div>
+	<div id="box" style="min-height:300px">
+		<p><span class="h2">langCreateAnAccount:</span></p>
+		<form name="input" action="/server/account_create" method="get" onsubmit="return register(this)">
+			<span class="h9">langUsername:</span>
+			<input type="text" name="username" id="username" class="username" size="25">
+			<span class="h9">langPassword:</span>
+			<input type="password" name="password" id="password" class="password" size="25">
+			<input type="submit" class="loginsubmit" value="langCreateAccount">
+		</form>
+	</div>
+	<div id="darkLayer" class="darkClass"></div>
+</body>
+</html>

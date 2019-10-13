@@ -1,0 +1,95 @@
+
+<!--
+	milkAdmin - WebAdministrator of Minecraft Server for Bukkit
+    Copyright (C) 2010-2011  Alejandro Barreiro (Sharkiller)
+	
+    This file is part of milkAdmin.
+
+    This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+	To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to
+	Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>milkAdmin - Login</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=9;" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta http-equiv="Cache-control" content="no-cache" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="/css/jquery.jnotify.min.css" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.jnotify.min.js"></script>
+	<script type="text/javascript" src="/js/lang/default.js"></script>
+	<script type="text/javascript">
+		$.ajaxSetup({
+			timeout: 5000
+		});
+		
+		function loginform(form){
+			$.ajax({
+				type: "POST",
+				url: form.action,
+				data: $(form).serialize(),
+				success: function(data) {
+					if(data == "ok"){
+						$.jnotify(jsLogin["welcome"], 5000);
+						$.get('/ping');
+						$.get('/ping');
+						setTimeout('window.location.reload()', 1000);
+					}else if(data == "error"){
+						$.jnotify(jsLogin["invalidlogin"], "error", 2000);
+					}else{
+						$.jnotify(jsLogin["UnknownError"], "error", 2000);
+					}
+				},
+				error: function(error){
+					$.jnotify(jsLogin["NotResponse"], "error", 2000);
+				},
+				dataType: "text"
+			});
+
+			return false;
+		};
+		
+		function replaceText() {
+			for(var prop in langLogin){
+				var patt=new RegExp(prop, "g");
+				$('body').html($('body').html().replace(patt, langLogin[prop])); 
+			}
+		}
+		
+		$(document).ready(function() {
+			replaceText();
+		});
+	</script>
+</head>
+<body>
+	<div id="header" class="fluid"> 
+		<div class="container"> 
+			<div style="position: relative; float:left; width: 450px; height: 80px;">
+				<img width="450" height="80" src="/images/logo-header.png" alt="milkAdmin" style="position: absolute;" />
+			</div>
+		</div>
+	</div> 
+	<div id="features" class="fluid" style="border-bottom:outset 1px #ffffff;"> 
+		<div class="container">
+			<div class="subtitle">Minecraft Administration Tool</div>
+		</div>
+	</div>
+	<div id="darkLayer" class="darkClass"></div>
+	
+	<div id="box" style="min-height:300px">
+		<p><span class="h2">langmilkAdminLogin:</span></p>
+		<form name="input" action="/server/login" id="login" method="post" onsubmit="return loginform(this)">
+			<span class="h9">langUsername:</span>
+			<input type="text" name="username" id="username" class="username" size="25"/><br />
+			<span class="h9">langPassword:</span>
+			<input type="password" name="password" class="password" size="25"/><br />
+			<input type="submit" class="loginsubmit" value="langLogin"/>
+		</form>
+	</div>
+</body>
+</html>
