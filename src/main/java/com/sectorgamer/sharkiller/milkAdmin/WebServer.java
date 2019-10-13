@@ -115,7 +115,7 @@ public class WebServer extends Thread implements RTKListener {
             int length;
 
             while ((length = reader.read(buf)) > -1) {
-                fileData.append(String.valueOf(buf, 0, length).replaceAll("", ExternalUrl));
+                fileData.append(String.valueOf(buf, 0, length).replaceAll("_ExternalUrl_", ExternalUrl));
             }
             reader.close();
         } catch (final Exception e) {
@@ -143,7 +143,7 @@ public class WebServer extends Thread implements RTKListener {
                 if (replace) {
                     while ((length = file.read(fileData)) > 0) {
                         final String aux = new String(fileData, 0, length);
-                        StringData.append(aux.replaceAll("", ExternalUrl));
+                        StringData.append(aux.replaceAll("_ExternalUrl_", ExternalUrl));
                     }
                     lengthData = StringData.length();
                 } else {
